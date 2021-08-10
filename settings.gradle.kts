@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Jetpack Compose Puzzler"
-include ':app'
+include(":app")
