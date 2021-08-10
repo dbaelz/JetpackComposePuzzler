@@ -3,21 +3,36 @@ package de.dbaelz.demo.compose.puzzler
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import de.dbaelz.demo.compose.puzzler.Screen.ABOUT
+import de.dbaelz.demo.compose.puzzler.Screen.MAIN
+import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
+import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
 import de.dbaelz.demo.compose.puzzler.ui.theme.JetpackComposePuzzlerTheme
+import de.dbaelz.demo.compose.puzzler.ui.theme.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposePuzzlerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                val navController = rememberNavController()
+                val backstackEntry = navController.currentBackStackEntryAsState()
+
+                Scaffold(
+                    topBar = { TopBar("JetpackCompose Puzzler") },
+                ) {
+                    PuzzlerNavHost(navController, Modifier.padding(it))
                 }
             }
         }
@@ -25,14 +40,33 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+private fun TopBar(title: String) {
+    TopAppBar(title = { Text(title) })
 }
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    JetpackComposePuzzlerTheme {
-        Greeting("Android")
+private fun PuzzlerNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(
+        navController = navController,
+        startDestination = MAIN.name,
+        modifier = modifier
+    ) {
+        composable(MAIN.name) {
+            MainScreen(createMainMenuModel()) { navController.navigate(it.name) }
+        }
+
+        composable(ABOUT.name) {
+            AboutScreen()
+        }
     }
+}
+
+enum class Screen {
+    MAIN,
+    ABOUT,
+    MODIFIER_BORDER,
+    MODIFIER_BORDER_SIMPLIFIED,
+    MODIFIER_CLICK,
+    BUTTON_CLICK,
+    TEXT_LOCAL_PROVIDER,
 }
