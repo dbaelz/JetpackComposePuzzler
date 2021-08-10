@@ -3,7 +3,7 @@ plugins {
     id("kotlin-android")
 }
 
-val compose_version = "1.0.0"
+val compose_version = "1.0.1"
 
 
 android {
@@ -41,7 +41,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = compose_version
-        kotlinCompilerVersion = "1.5.10"
+        kotlinCompilerVersion = "1.5.21"
     }
     packagingOptions {
         resources {
