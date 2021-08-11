@@ -1,10 +1,8 @@
 # About
-This repository contains some JetpackCompose puzzler.
-I'll post these puzzlers on my [Twitter](https://twitter.com/dbaelz) account
-along with a poll and do an explanation/resolution after the voting phase.
-
-## Contribution
-Feel free to use them and contribute new puzzlers via pull requests.
+This repository contains some [Jetpack Compose](https://developer.android.com/jetpack/compose) puzzlers.
+I post these puzzlers on my [Twitter](https://twitter.com/dbaelz) account
+and let the people vote the different answers.
+The linked tweets also contain solutions/explanations for the puzzlers.
 
 ## Puzzlers
 - [Modifier Border](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/ModifierBorderPuzzlerScreen.kt)
@@ -17,6 +15,15 @@ Feel free to use them and contribute new puzzlers via pull requests.
 --> [Tweets with explanation](https://twitter.com/dbaelz/status/1419976352946692117)
 - [Text color and LocalProvider](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/TextAndLocalProviderPuzzlerScreen.kt)
 --> [Tweets with explanation](https://twitter.com/dbaelz/status/1423248388255059976)
+
+
+
+![screenshot of the app main screen](screenshot.png)
+
+
+
+## Contribution
+Feel free to use them and contribute new puzzlers via pull requests.
 
 # License
 Copyright (c) Daniel Bälz
