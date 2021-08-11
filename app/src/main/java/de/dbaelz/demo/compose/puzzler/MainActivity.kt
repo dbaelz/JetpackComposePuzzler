@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -18,7 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import de.dbaelz.demo.compose.puzzler.Screen.*
 import de.dbaelz.demo.compose.puzzler.data.MainMenuModel
 import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
-import de.dbaelz.demo.compose.puzzler.data.entryNameByRoute
+import de.dbaelz.demo.compose.puzzler.data.entryByRoute
 import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
 import de.dbaelz.demo.compose.puzzler.ui.MainScreen
 import de.dbaelz.demo.compose.puzzler.ui.puzzler.*
@@ -37,8 +37,15 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     topBar = {
-                        val name = if (route != null) menu.entryNameByRoute(route) else ""
-                        TopBar(if (name.isEmpty()) "Jetpack Compose Puzzler" else name)
+                        val entry = if (route != null) {
+                            menu.entryByRoute(route)
+                        } else {
+                            null
+                        }
+
+                        TopBar(entry?.name ?: "Jetpack Compose Puzzler", entry != null) {
+                            navController.popBackStack()
+                        }
                     },
                 ) {
                     PuzzlerNavHost(navController, Modifier.padding(it), menu)
@@ -49,8 +56,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun TopBar(title: String) {
-    TopAppBar(title = { Text(title) })
+private fun TopBar(title: String, withBackNavigation: Boolean, onBackPressed: () -> Unit) {
+    TopAppBar(
+        title = { Text(title) },
+        navigationIcon = if (withBackNavigation) {
+            {
+                IconButton(onClick = onBackPressed) {
+                    Icon(Icons.Default.ArrowBack, null)
+                }
+            }
+        } else {
+            null
+        }
+    )
 }
 
 @ExperimentalFoundationApi

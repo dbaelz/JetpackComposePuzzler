@@ -1,6 +1,6 @@
 # About
-This repository contains some JetpackCompose puzzler.  
-I'll post these puzzlers on my [Twitter](https://twitter.com/dbaelz) account  
+This repository contains some JetpackCompose puzzler.
+I'll post these puzzlers on my [Twitter](https://twitter.com/dbaelz) account
 along with a poll and do an explanation/resolution after the voting phase.
 
 ## Contribution
