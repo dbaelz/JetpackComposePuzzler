@@ -7,8 +7,16 @@ along with a poll and do an explanation/resolution after the voting phase.
 Feel free to use them and contribute new puzzlers via pull requests.
 
 ## Puzzlers
-
-
+- [Modifier Border](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/ModifierBorderPuzzlerScreen.kt)
+--> [Tweets with explanation](https://twitter.com/dbaelz/status/1418134001232056320)
+- [Simplified Modifier Border](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/ModifierBorderSimplifiedScreen.kt)
+--> [Tweets with explanation](https://twitter.com/dbaelz/status/1418498803456434178)
+- [Modifier Click](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/ModifierClickPuzzlerScreen.kt)
+--> [Tweets with explanation](https://twitter.com/dbaelz/status/1419730567327895559)
+- [Button Click](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/ButtonClickPuzzlerScreen.kt)
+--> [Tweets with explanation](https://twitter.com/dbaelz/status/1419976352946692117)
+- [Text color and LocalProvider](app/src/main/java/de/dbaelz/demo/compose/puzzler/ui/puzzler/TextAndLocalProviderPuzzlerScreen.kt)
+--> [Tweets with explanation](https://twitter.com/dbaelz/status/1423248388255059976)
 
 # License
 Copyright (c) Daniel Bälz

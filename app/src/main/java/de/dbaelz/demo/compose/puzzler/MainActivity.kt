@@ -3,6 +3,7 @@ package de.dbaelz.demo.compose.puzzler
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -21,6 +22,7 @@ import de.dbaelz.demo.compose.puzzler.ui.MainScreen
 import de.dbaelz.demo.compose.puzzler.ui.puzzler.*
 import de.dbaelz.demo.compose.puzzler.ui.theme.JetpackComposePuzzlerTheme
 
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ private fun TopBar(title: String) {
     TopAppBar(title = { Text(title) })
 }
 
+@ExperimentalFoundationApi
 @Composable
 private fun PuzzlerNavHost(
     navController: NavHostController,

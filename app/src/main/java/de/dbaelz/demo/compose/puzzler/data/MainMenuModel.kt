@@ -46,7 +46,7 @@ fun createMainMenuModel(): MainMenuModel {
             MainMenuModel.Item.Separator,
 
             MainMenuModel.Item.Entry(
-                name = "Text color with LocalProvider",
+                name = "Text color and LocalProvider",
                 description = "The text color is set with the LocalProvider. Multiple times...",
                 targetScreen = Screen.TEXT_LOCAL_PROVIDER
             ),
