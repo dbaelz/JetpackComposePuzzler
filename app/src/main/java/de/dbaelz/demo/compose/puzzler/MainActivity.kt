@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import de.dbaelz.demo.compose.puzzler.Screen.*
+import de.dbaelz.demo.compose.puzzler.data.MainMenuModel
 import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
 import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
 import de.dbaelz.demo.compose.puzzler.ui.MainScreen
@@ -31,10 +32,12 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val backstackEntry = navController.currentBackStackEntryAsState()
 
+                val menu = createMainMenuModel()
+
                 Scaffold(
                     topBar = { TopBar("Jetpack Compose Puzzler") },
                 ) {
-                    PuzzlerNavHost(navController, Modifier.padding(it))
+                    PuzzlerNavHost(navController, Modifier.padding(it), menu)
                 }
             }
         }
@@ -50,7 +53,8 @@ private fun TopBar(title: String) {
 @Composable
 private fun PuzzlerNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    menu: MainMenuModel
 ) {
     NavHost(
         navController = navController,
@@ -58,7 +62,7 @@ private fun PuzzlerNavHost(
         modifier = modifier
     ) {
         composable(MAIN.name) {
-            MainScreen(createMainMenuModel()) { navController.navigate(it.name) }
+            MainScreen(menu) { navController.navigate(it.name) }
         }
 
         composable(ABOUT.name) {

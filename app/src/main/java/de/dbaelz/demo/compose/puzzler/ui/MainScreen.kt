@@ -61,7 +61,7 @@ private fun MenuCard(entry: MainMenuModel.Item.Entry, onItemSelected: (Screen) -
             .height(148.dp)
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
             .clickable {
-                onItemSelected(entry.targetScreen)
+                onItemSelected(entry.route)
             }
     ) {
         Column(
