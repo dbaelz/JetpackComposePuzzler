@@ -58,7 +58,7 @@ private fun MenuCard(entry: MainMenuModel.Item.Entry, onItemSelected: (Screen) -
         elevation = 12.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .height(180.dp)
+            .height(148.dp)
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
             .clickable {
                 onItemSelected(entry.targetScreen)
