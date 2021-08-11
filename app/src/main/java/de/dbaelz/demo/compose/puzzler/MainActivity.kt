@@ -14,11 +14,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import de.dbaelz.demo.compose.puzzler.Screen.ABOUT
-import de.dbaelz.demo.compose.puzzler.Screen.MAIN
+import de.dbaelz.demo.compose.puzzler.Screen.*
 import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
 import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
 import de.dbaelz.demo.compose.puzzler.ui.MainScreen
+import de.dbaelz.demo.compose.puzzler.ui.puzzler.*
 import de.dbaelz.demo.compose.puzzler.ui.theme.JetpackComposePuzzlerTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +45,10 @@ private fun TopBar(title: String) {
 }
 
 @Composable
-private fun PuzzlerNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+private fun PuzzlerNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     NavHost(
         navController = navController,
         startDestination = MAIN.name,
@@ -57,6 +60,26 @@ private fun PuzzlerNavHost(navController: NavHostController, modifier: Modifier 
 
         composable(ABOUT.name) {
             AboutScreen()
+        }
+
+        composable(MODIFIER_BORDER.name) {
+            ModifierBorderPuzzlerScreen()
+        }
+
+        composable(MODIFIER_BORDER_SIMPLIFIED.name) {
+            ModifierBorderSimplifiedScreen()
+        }
+
+        composable(MODIFIER_CLICK.name) {
+            ModifierClickPuzzlerScreen()
+        }
+
+        composable(BUTTON_CLICK.name) {
+            ButtonClickPuzzlerScreen()
+        }
+
+        composable(TEXT_LOCAL_PROVIDER.name) {
+            TextAndLocalProviderPuzzlerScreen()
         }
     }
 }
