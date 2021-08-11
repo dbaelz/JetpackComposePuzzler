@@ -18,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import de.dbaelz.demo.compose.puzzler.Screen.*
 import de.dbaelz.demo.compose.puzzler.data.MainMenuModel
 import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
+import de.dbaelz.demo.compose.puzzler.data.entryNameByRoute
 import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
 import de.dbaelz.demo.compose.puzzler.ui.MainScreen
 import de.dbaelz.demo.compose.puzzler.ui.puzzler.*
@@ -31,11 +32,14 @@ class MainActivity : ComponentActivity() {
             JetpackComposePuzzlerTheme {
                 val navController = rememberNavController()
                 val backstackEntry = navController.currentBackStackEntryAsState()
-
+                val route = backstackEntry.value?.destination?.route
                 val menu = createMainMenuModel()
 
                 Scaffold(
-                    topBar = { TopBar("Jetpack Compose Puzzler") },
+                    topBar = {
+                        val name = if (route != null) menu.entryNameByRoute(route) else ""
+                        TopBar(if (name.isEmpty()) "Jetpack Compose Puzzler" else name)
+                    },
                 ) {
                     PuzzlerNavHost(navController, Modifier.padding(it), menu)
                 }

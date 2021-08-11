@@ -13,6 +13,13 @@ data class MainMenuModel(val items: List<Item> = emptyList()) {
     }
 }
 
+fun MainMenuModel.entryNameByRoute(route: String): String {
+    return items
+        .filterIsInstance<MainMenuModel.Item.Entry>()
+        .firstOrNull() { it.route.name == route }
+        ?.name ?: ""
+}
+
 fun createMainMenuModel(): MainMenuModel {
     return MainMenuModel(
         listOf(
