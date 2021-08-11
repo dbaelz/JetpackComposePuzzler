@@ -1,13 +1,14 @@
-package de.dbaelz.demo.compose.puzzler.ui.theme
+package de.dbaelz.demo.compose.puzzler.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
+import androidx.compose.material.Card
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,20 +21,18 @@ fun MainScreen(model: MainMenuModel, onItemSelected: (Screen) -> Unit) {
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(scrollState),
+            .fillMaxSize()
+            .verticalScroll(scrollState)
     ) {
         Spacer(Modifier.height(8.dp))
 
-        model.items.forEach {
-            when (it) {
+        model.items.forEach { item ->
+            when (item) {
                 is MainMenuModel.Item.Separator -> {
-                    Spacer(Modifier.height(16.dp))
+                    Separator()
                 }
                 is MainMenuModel.Item.Entry -> {
-                    MenuButton(Modifier.align(Alignment.CenterHorizontally), it, onItemSelected)
-
-                    Spacer(Modifier.height(8.dp))
+                    MenuCard(item, onItemSelected)
                 }
             }
         }
@@ -41,25 +40,47 @@ fun MainScreen(model: MainMenuModel, onItemSelected: (Screen) -> Unit) {
 }
 
 @Composable
-private fun MenuButton(
-    modifier: Modifier,
-    entry: MainMenuModel.Item.Entry,
-    onItemSelected: (Screen) -> Unit
-) {
-    Button(
-        modifier = modifier
-            .width(220.dp)
-            .height(48.dp),
-        onClick = { onItemSelected(entry.targetScreen) }
+private fun Separator() {
+    Spacer(Modifier.height(8.dp))
+
+    Divider(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.primaryVariant,
+        thickness = 8.dp
+    )
+
+    Spacer(Modifier.height(8.dp))
+}
+
+@Composable
+private fun MenuCard(entry: MainMenuModel.Item.Entry, onItemSelected: (Screen) -> Unit) {
+    Card(
+        elevation = 12.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(180.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+            .clickable {
+                onItemSelected(entry.targetScreen)
+            }
     ) {
-        entry.icon?.let {
-            Icon(
-                it, null,
-                modifier = Modifier
-                    .padding(end = 8.dp)
-                    .size(28.dp)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = entry.name,
+                color = MaterialTheme.colors.primary,
+                fontSize = 20.sp
+            )
+
+            Spacer(Modifier.height(8.dp))
+
+            Text(
+                text = entry.description,
+                fontSize = 16.sp
             )
         }
-        Text(entry.name, fontSize = 20.sp)
     }
 }

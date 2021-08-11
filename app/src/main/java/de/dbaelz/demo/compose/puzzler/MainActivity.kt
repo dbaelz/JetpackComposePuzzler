@@ -18,8 +18,8 @@ import de.dbaelz.demo.compose.puzzler.Screen.ABOUT
 import de.dbaelz.demo.compose.puzzler.Screen.MAIN
 import de.dbaelz.demo.compose.puzzler.data.createMainMenuModel
 import de.dbaelz.demo.compose.puzzler.ui.AboutScreen
+import de.dbaelz.demo.compose.puzzler.ui.MainScreen
 import de.dbaelz.demo.compose.puzzler.ui.theme.JetpackComposePuzzlerTheme
-import de.dbaelz.demo.compose.puzzler.ui.theme.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 val backstackEntry = navController.currentBackStackEntryAsState()
 
                 Scaffold(
-                    topBar = { TopBar("JetpackCompose Puzzler") },
+                    topBar = { TopBar("Jetpack Compose Puzzler") },
                 ) {
                     PuzzlerNavHost(navController, Modifier.padding(it))
                 }
